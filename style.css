@@ -1,0 +1,206 @@
+body {
+  margin: 0;
+  padding: 40px 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f7f6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.login {
+  background: #ffffff;
+  padding: 30px 40px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.name,
+.password {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.name:focus,
+.password:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+}
+
+.login_btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login_btn:hover {
+  background-color: #0056b3;
+}
+
+.login_btn:active {
+  transform: scale(0.98);
+}
+/* task list */
+/* ---- Danh sách chứa Task ---- */
+#task_list {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+  width: 320px;
+  display: none; /* Mặc định ẩn, hiện bằng class .show */
+  flex-direction: column;
+  gap: 12px; /* Tạo khoảng cách giữa các task với nhau */
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+#task_list.show {
+  display: flex; /* Chuyển thành flex để áp dụng gap dễ dàng */
+}
+
+/* ---- Khối chứa từng Task cá nhân (.task) ---- */
+#task_list .task {
+  background: #ffffff;
+  padding: 15px 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  border-left: 4px solid #28a745; /* Vạch màu xanh lá bên trái tạo điểm nhấn */
+  display: flex;
+  flex-direction: column;
+  gap: 4px; /* Khoảng cách nhỏ giữa tiêu đề và mô tả */
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+/* Hiệu ứng khi rê chuột qua cụm task */
+#task_list .task:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+}
+
+/* ---- Style cho phần Tiêu đề Task ---- */
+#task_list .task-title-item {
+  font-weight: 600;
+  color: #333;
+  font-size: 15px;
+  list-style: none; /* Bỏ chấm tròn nếu bạn dùng thẻ li */
+}
+
+/* ---- Style cho phần Mô tả Task ---- */
+#task_list .task-desc-item {
+  color: #666;
+  font-size: 13px;
+  line-height: 1.4;
+  list-style: none; /* Bỏ chấm tròn nếu bạn dùng thẻ li */
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* create */
+.create-task {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  width: 320px;
+  display: none;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+  box-sizing: border-box;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.task-title {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  box-sizing: border-box;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.task-title:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+}
+
+/* CSS MỚI THÊM: Cho phần ô nhập mô tả task */
+#task_description {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  box-sizing: border-box;
+  outline: none;
+  transition: all 0.3s ease;
+  background-color: #fafafa; /* Đổi màu nền nhẹ để phân biệt với Title */
+}
+
+#task_description:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+  background-color: #ffffff;
+}
+
+.add-task-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-task-btn:hover {
+  background-color: #218838;
+}
+
+.add-task-btn:active {
+  transform: scale(0.98);
+}
+
+.create-task.show {
+  display: flex;
+}
