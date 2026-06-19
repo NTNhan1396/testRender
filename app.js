@@ -28,7 +28,8 @@ const renderTask = function (tasks) {
 };
 
 //
-btn_login.addEventListener("click", async () => {
+btn_login.addEventListener("click", async (e) => {
+  e.preventDefault();
   const name = document.querySelector("#name").value;
   const password = document.querySelector("#password").value;
 
@@ -62,7 +63,8 @@ btn_login.addEventListener("click", async () => {
 //create task
 const btn_createTask = document.querySelector("#add_task_btn");
 
-btn_createTask.addEventListener("click", async () => {
+btn_createTask.addEventListener("click", async (e) => {
+  e.preventDefault();
   const task_title = document.querySelector("#task_title").value;
   const task_description = document.getElementById("task_description").value;
   const token = localStorage.getItem("token");
