@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Login</title>
+  </head>
+  <body>
+    <div class="login-container">
+      <h1>Login</h1>
+      <div class="login">
+        <input
+          type="text"
+          id="name"
+          class="name"
+          placeholder="Enter your name"
+        />
+        <input
+          type="password"
+          id="password"
+          class="password"
+          placeholder="Enter your password"
+        />
+
+        <button id="login_btn" class="login_btn">Login</button>
+      </div>
+
+      <div class="create-task">
+        <input
+          type="text"
+          id="task_title"
+          class="task-title"
+          placeholder="Enter task title"
+        />
+
+        <input
+          type="text"
+          id="task_description"
+          placeholder="Enter task description"
+        />
+
+        <button id="add_task_btn" class="add-task-btn">Add Task</button>
+      </div>
+
+      <ul id="task_list"></ul>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
