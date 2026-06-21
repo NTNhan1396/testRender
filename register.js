@@ -48,7 +48,7 @@ btn_sign_up.addEventListener("click", async (e) => {
 
     if (data.success === true) {
       alert("Register successful! 🎉");
-      console.log("Chuẩn bị chuyển hướng sang trang login...");
+
       window.location.href = "./login.html";
     } else {
       alert(data.message || "Registration failed");

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="task.css" />
+    <title>Task Management</title>
+  </head>
+  <body>
+    <div class="task-container">
+      <h2>Create Task</h2>
+
+      <div class="create-task">
+        <input
+          type="text"
+          id="task_title"
+          class="task-title"
+          placeholder="Enter task title"
+        />
+        <input
+          type="text"
+          id="task_description"
+          placeholder="Enter task description"
+        />
+
+        <button id="add_task_btn" class="add-task-btn">Add Task</button>
+      </div>
+
+      <ul id="task_list"></ul>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

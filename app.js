@@ -1,7 +1,6 @@
-const btn_login = document.querySelector("#login_btn");
 const listTask = document.querySelector("#task_list");
-const createTask = document.querySelector(".create-task");
-const fetchTask = async (token) => {
+
+const fetchTasks = async (token) => {
   const res = await fetch(
     "https://task-manager-api-v2-6i9o.onrender.com/tasks",
     {
@@ -34,39 +33,6 @@ const renderTask = function (tasks) {
   bindDeleteEvents();
 };
 
-//
-btn_login.addEventListener("click", async (e) => {
-  e.preventDefault();
-  const name = document.querySelector("#name").value;
-  const password = document.querySelector("#password").value;
-
-  const response = await fetch(
-    "https://task-manager-api-v2-6i9o.onrender.com/tasks/login",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-
-      body: JSON.stringify({
-        name,
-        password,
-      }),
-    },
-  );
-
-  const data = await response.json();
-
-  localStorage.setItem("token", data.token);
-
-  const token = localStorage.getItem("token");
-
-  const tasks = await fetchTask(token);
-  renderTask(tasks);
-  listTask.classList.add("show");
-  createTask.classList.add("show");
-});
-
 //create task
 const btn_createTask = document.querySelector("#add_task_btn");
 
@@ -97,7 +63,7 @@ btn_createTask.addEventListener("click", async (e) => {
 
   console.log(await res.json());
 
-  const tasks = await fetchTask(token);
+  const tasks = await fetchTasks(token);
   renderTask(tasks);
 });
 
@@ -116,7 +82,7 @@ const bindDeleteEvents = function () {
       }
       const token = localStorage.getItem("token");
       const res = await fetch(
-        `https://task-manager-api-v2-6i9o.onrender.com/tasks${taskId}`,
+        `https://task-manager-api-v2-6i9o.onrender.com/tasks/${taskId}`,
         {
           method: "DELETE",
           headers: {
@@ -126,8 +92,16 @@ const bindDeleteEvents = function () {
       );
       console.log(await res.json());
 
-      const tasks = await fetchTask(token);
+      const tasks = await fetchTasks(token);
       renderTask(tasks);
     });
   });
 };
+
+const autoLoad = async () => {
+  const token = localStorage.getItem("token");
+  const tasks = await fetchTasks(token);
+  renderTask(tasks);
+};
+
+autoLoad();
