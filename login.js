@@ -24,7 +24,7 @@ btn_login.addEventListener("click", async (e) => {
   const data = await response.json();
 
   localStorage.setItem("token", data.token);
-
+  localStorage.setItem("nameUser", name);
   console.log("Login success full");
 
   window.location.href = "./task.html";

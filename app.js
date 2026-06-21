@@ -98,8 +98,12 @@ const bindDeleteEvents = function () {
   });
 };
 
+const name = document.getElementById("user_name");
 const autoLoad = async () => {
   const token = localStorage.getItem("token");
+  const userName = localStorage.getItem("nameUser");
+  name.innerHTML = userName;
+
   const tasks = await fetchTasks(token);
   renderTask(tasks);
 };

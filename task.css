@@ -1,19 +1,64 @@
 body {
   margin: 0;
-  padding: 40px 0;
+  padding: 0; /* Đổi thành 0 để thanh Navbar có thể tràn viền */
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f4f7f6;
   display: flex;
-  justify-content: center;
+  flex-direction: column; /* Chuyển thành column để xếp Navbar lên đầu */
   align-items: center;
   min-height: 100vh;
   box-sizing: border-box;
 }
 
+/* ---- THANH NAVBAR Ở GÓC TRÊN ---- */
+.navbar {
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between; /* Đẩy tên sang trái, logout sang phải */
+  align-items: center;
+  padding: 15px 30px;
+  box-sizing: border-box;
+  position: fixed; /* Cố định thanh ở trên cùng khi cuộn trang */
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.user-info {
+  font-size: 15px;
+  color: #333;
+  font-weight: 600;
+}
+
+.user-info span {
+  color: #007bff; /* Làm nổi bật tên user */
+}
+
+.logout-link {
+  color: #dc3545;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 6px 12px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.logout-link:hover {
+  background-color: #fff5f5; /* Hiệu ứng nền nhẹ khi hover */
+  text-decoration: underline;
+}
+
+/* ---- CONTAINER CHỨA KHUNG TASK ---- */
 .task-container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 100px; /* Tạo khoảng cách thốn ra để không bị Navbar đè lên */
+  padding-bottom: 40px;
+  width: 100%;
 }
 
 h2 {
@@ -31,7 +76,7 @@ h2 {
   border-radius: 10px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
   width: 320px;
-  display: flex; /* Hiển thị mặc định luôn vì đã ở trang riêng */
+  display: flex;
   flex-direction: column;
   gap: 15px;
   box-sizing: border-box;
@@ -87,7 +132,7 @@ h2 {
   padding: 0;
   margin-top: 20px;
   width: 320px;
-  display: flex; /* Hiển thị mặc định luôn */
+  display: flex;
   flex-direction: column;
   gap: 12px;
 }
