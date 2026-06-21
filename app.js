@@ -115,12 +115,15 @@ const bindDeleteEvents = function () {
         return;
       }
       const token = localStorage.getItem("token");
-      const res = await fetch(`http://localhost:1000/tasks/${taskId}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
+      const res = await fetch(
+        `https://task-manager-api-v2-6i9o.onrender.com/tasks${taskId}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         },
-      });
+      );
       console.log(await res.json());
 
       const tasks = await fetchTask(token);
