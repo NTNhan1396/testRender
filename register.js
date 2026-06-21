@@ -10,15 +10,18 @@ btn_sign_up.addEventListener("click", async (e) => {
   ).value;
 
   if (!name || name.trim() === "") {
-    return alert("Please enter your name");
+    alert("Please enter your name");
+    return;
   }
 
   if (password !== password_confirm) {
-    return alert("Passwords do not match");
+    alert("Passwords do not match");
+    return;
   }
 
-  if (password.length < 6) {
-    return alert("Password must be at least 6 characters long");
+  if (password.length <= 6) {
+    alert("Password must be at least 6 characters long");
+    return;
   }
 
   try {

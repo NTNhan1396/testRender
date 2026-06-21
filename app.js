@@ -23,7 +23,10 @@ const renderTask = function (tasks) {
       <div class="task-title-item">${task.title}</div>
       <div class="task-desc-item">${task.description}</div>
     </div>
-    <button class="btn_delete" data-id="${task._id}">X</button>
+    <div class="task-actions">
+        <button class="btn_edit" onclick="editTask(${task._id})">✏️</button>
+        <button class="btn_delete" data-id="${task._id}">X</button>
+      </div>
   </li>
 `;
 
@@ -41,6 +44,11 @@ btn_createTask.addEventListener("click", async (e) => {
   const task_title = document.querySelector("#task_title").value;
   const task_description = document.getElementById("task_description").value;
   const token = localStorage.getItem("token");
+
+  if (!task_title.trim() || !task_description.trim()) {
+    alert("Vui lòng điền đầy đủ tiêu đề và mô tả");
+    return;
+  }
 
   const newTask = {
     title: task_title,
@@ -62,6 +70,9 @@ btn_createTask.addEventListener("click", async (e) => {
   );
 
   console.log(await res.json());
+
+  document.querySelector("#task_title").value = "";
+  document.getElementById("task_description").value = "";
 
   const tasks = await fetchTasks(token);
   renderTask(tasks);
@@ -98,6 +109,9 @@ const bindDeleteEvents = function () {
   });
 };
 
+//update
+
+//reload page
 const name = document.getElementById("user_name");
 const autoLoad = async () => {
   const token = localStorage.getItem("token");
