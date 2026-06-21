@@ -66,21 +66,21 @@ h1 {
 .login_btn:active {
   transform: scale(0.98);
 }
-/* task list */
+
 /* ---- Danh sách chứa Task ---- */
 #task_list {
   list-style: none;
   padding: 0;
   margin-top: 20px;
   width: 320px;
-  display: none; /* Mặc định ẩn, hiện bằng class .show */
+  display: none;
   flex-direction: column;
-  gap: 12px; /* Tạo khoảng cách giữa các task với nhau */
+  gap: 12px;
   animation: fadeIn 0.4s ease-in-out;
 }
 
 #task_list.show {
-  display: flex; /* Chuyển thành flex để áp dụng gap dễ dàng */
+  display: flex;
 }
 
 /* ---- Khối chứa từng Task cá nhân (.task) ---- */
@@ -89,36 +89,68 @@ h1 {
   padding: 15px 20px;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
-  border-left: 4px solid #28a745; /* Vạch màu xanh lá bên trái tạo điểm nhấn */
+  border-left: 4px solid #28a745;
+
+  /* CẬP NHẬT: Dùng flex để đưa nút xóa sang bên phải */
   display: flex;
-  flex-direction: column;
-  gap: 4px; /* Khoảng cách nhỏ giữa tiêu đề và mô tả */
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+
   transition: all 0.2s ease;
   box-sizing: border-box;
 }
 
-/* Hiệu ứng khi rê chuột qua cụm task */
 #task_list .task:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
-  cursor: pointer;
 }
 
-/* ---- Style cho phần Tiêu đề Task ---- */
+/* Gom nhóm phần chữ lại để không bị ảnh hưởng bởi justify-content */
+.task-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1; /* Chiếm tối đa không gian trống còn lại */
+}
+
 #task_list .task-title-item {
   font-weight: 600;
   color: #333;
   font-size: 15px;
-  list-style: none; /* Bỏ chấm tròn nếu bạn dùng thẻ li */
+  list-style: none;
 }
 
-/* ---- Style cho phần Mô tả Task ---- */
 #task_list .task-desc-item {
   color: #666;
   font-size: 13px;
   line-height: 1.4;
-  list-style: none; /* Bỏ chấm tròn nếu bạn dùng thẻ li */
+  list-style: none;
 }
+
+/* ---- CSS MỚI CHO NÚT XÓA ---- */
+.btn_delete {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    transform 0.1s;
+}
+
+.btn_delete:hover {
+  background-color: #bd2130;
+}
+
+.btn_delete:active {
+  transform: scale(0.95);
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -145,23 +177,7 @@ h1 {
   animation: fadeIn 0.4s ease-in-out;
 }
 
-.task-title {
-  width: 100%;
-  padding: 12px 15px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  font-size: 14px;
-  box-sizing: border-box;
-  outline: none;
-  transition: all 0.3s ease;
-}
-
-.task-title:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
-}
-
-/* CSS MỚI THÊM: Cho phần ô nhập mô tả task */
+.task-title,
 #task_description {
   width: 100%;
   padding: 12px 15px;
@@ -171,9 +187,13 @@ h1 {
   box-sizing: border-box;
   outline: none;
   transition: all 0.3s ease;
-  background-color: #fafafa; /* Đổi màu nền nhẹ để phân biệt với Title */
 }
 
+#task_description {
+  background-color: #fafafa;
+}
+
+.task-title:focus,
 #task_description:focus {
   border-color: #007bff;
   box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);

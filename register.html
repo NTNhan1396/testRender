@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Register</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 40px 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #f4f7f6;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        box-sizing: border-box;
+      }
+
+      h1 {
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+        font-weight: 600;
+      }
+
+      /* Khung bọc Form Register */
+      .register-container {
+        background: #ffffff;
+        padding: 30px 40px;
+        border-radius: 10px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        width: 320px; /* Điều chỉnh lại 320px cho bằng khít với form Login */
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      /* Khung chứa các ô input */
+      .register-form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      /* Các ô nhập liệu */
+      .register-form input {
+        width: 100%;
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-size: 14px;
+        box-sizing: border-box;
+        transition: all 0.3s ease;
+        outline: none;
+      }
+
+      /* Hiệu ứng focus */
+      .register-form input:focus {
+        border-color: #007bff;
+        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+      }
+
+      /* Nút Đăng Ký */
+      .register_btn {
+        width: 100%;
+        padding: 12px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .register_btn:hover {
+        background-color: #0056b3;
+      }
+
+      .register_btn:active {
+        transform: scale(0.98);
+      }
+
+      /* Phần chuyển đổi sang Đăng Nhập */
+      .switch-login {
+        text-align: center;
+        font-size: 13px;
+        color: #666;
+        margin-top: 5px;
+      }
+
+      .switch-login a {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .switch-login a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="register-container">
+      <h1>Register</h1>
+
+      <div class="register-form">
+        <input type="text" id="reg_name" placeholder="Enter your name" />
+
+        <input
+          type="password"
+          id="reg_password"
+          placeholder="Create a password"
+        />
+
+        <input
+          type="password"
+          id="reg_confirm_password"
+          placeholder="Confirm your password"
+        />
+
+        <button id="register_btn" class="register_btn">Sign Up</button>
+      </div>
+
+      <div class="switch-login">
+        Already have an account? <a href="index.html">Login here</a>
+      </div>
+    </div>
+
+    <script src="register.js"></script>
+  </body>
+</html>

@@ -1,10 +1,8 @@
 <!doctype html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
     <title>Login</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="login-container">
@@ -43,7 +41,15 @@
         <button id="add_task_btn" class="add-task-btn">Add Task</button>
       </div>
 
-      <ul id="task_list"></ul>
+      <ul id="task_list">
+        <li class="task">
+          <div class="task-content">
+            <div class="task-title-item">Demo Title</div>
+            <div class="task-desc-item">Demo Description</div>
+          </div>
+          <button class="btn_delete">Delete</button>
+        </li>
+      </ul>
     </div>
 
     <script src="app.js"></script>

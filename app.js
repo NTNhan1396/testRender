@@ -19,12 +19,19 @@ const renderTask = function (tasks) {
 
   tasks.forEach((task) => {
     listTask.innerHTML += `
-    <li class="task">
-    <div class="task-title-item">${task.title}</div>
-    <div class="task-desc-item">${task.description}</div>
-    </li>
-    `;
+  <li class="task">
+    <div class="task-content">
+      <div class="task-title-item">${task.title}</div>
+      <div class="task-desc-item">${task.description}</div>
+    </div>
+    <button class="btn_delete" data-id="${task._id}">X</button>
+  </li>
+`;
+
+    console.log(task._id);
   });
+
+  bindDeleteEvents();
 };
 
 //
@@ -93,3 +100,31 @@ btn_createTask.addEventListener("click", async (e) => {
   const tasks = await fetchTask(token);
   renderTask(tasks);
 });
+
+//delete
+const bindDeleteEvents = function () {
+  const btn_delete = document.querySelectorAll(".btn_delete");
+
+  btn_delete.forEach((btn) => {
+    btn.addEventListener("click", async (e) => {
+      e.preventDefault();
+
+      const taskId = e.currentTarget.dataset.id;
+      if (!taskId) {
+        console.error("Không tìm thấy taskId!");
+        return;
+      }
+      const token = localStorage.getItem("token");
+      const res = await fetch(`http://localhost:1000/tasks/${taskId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(await res.json());
+
+      const tasks = await fetchTask(token);
+      renderTask(tasks);
+    });
+  });
+};
