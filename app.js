@@ -1,3 +1,9 @@
+const token = localStorage.getItem("token");
+
+if (!token) {
+  window.location.href = "./login.html";
+}
+
 const listTask = document.querySelector("#task_list");
 
 const fetchTasks = async (token) => {
@@ -24,7 +30,7 @@ const renderTask = function (tasks) {
       <div class="task-desc-item">${task.description}</div>
     </div>
     <div class="task-actions">
-        <button class="btn_edit" onclick="editTask(${task._id})">✏️</button>
+        <button class="btn_edit" data-id="${task._id}">✏️</button>
         <button class="btn_delete" data-id="${task._id}">X</button>
       </div>
   </li>
@@ -34,6 +40,7 @@ const renderTask = function (tasks) {
   });
 
   bindDeleteEvents();
+  bindUpdEvents();
 };
 
 //create task
@@ -110,7 +117,38 @@ const bindDeleteEvents = function () {
 };
 
 //update
+const bindUpdEvents = () => {
+  const btn_edit = document.querySelectorAll(".btn_edit");
 
+  btn_edit.forEach((btn) => {
+    btn.addEventListener("click", async (e) => {
+      e.preventDefault();
+      const taskId = e.currentTarget.dataset.id;
+      const token = localStorage.getItem("token");
+      const newTitle = prompt("New title");
+      const newDescription = prompt("New description");
+
+      const res = await fetch(
+        `https://task-manager-api-v2-6i9o.onrender.com/tasks/${taskId}`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title: newTitle,
+            description: newDescription,
+          }),
+        },
+      );
+      console.log(await res.json());
+
+      const tasks = await fetchTasks(token);
+      renderTask(tasks);
+    });
+  });
+};
 //reload page
 const name = document.getElementById("user_name");
 const autoLoad = async () => {
@@ -123,3 +161,10 @@ const autoLoad = async () => {
 };
 
 autoLoad();
+//logout
+const logout = document.getElementById("logout_btn");
+logout.addEventListener("click", () => {
+  localStorage.removeItem("token");
+
+  window.location.href = "./login.html";
+});
